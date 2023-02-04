@@ -1,6 +1,7 @@
 ## Typing & Learn English
 
-<p align="center"><img src="/img/demo.gif?raw=true"/></p>
+### Demo
+<img src="/img/demo.gif?raw=true"/>
 
 ### Run
 ```shell
