@@ -1,7 +1,7 @@
 run-mac: build
 	./keyeng
 
-run-linux: build
+run-linux: build_linux
 	./keyeng
 
 build:
