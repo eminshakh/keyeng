@@ -92,6 +92,8 @@ Z:
 		accuracy = 0
 	}
 	terminal.Clear()
-	fmt.Println(terminal.HiBlueString(fmt.Sprintf("Speed:[%d] Accuracy:[%.0f%%] Typos:[%d] Elapsed:[%.2f min]", int(spm), accuracy, typos, time.Since(now).Minutes())))
+	result := fmt.Sprintf("Speed:[%d] Accuracy:[%.0f%%] Typos:[%d] Elapsed:[%.2f min]", int(spm), accuracy, typos, time.Since(now).Minutes())
+	fmt.Println(terminal.HiBlueString(result))
+	writeLog(result)
 	return nil
 }
