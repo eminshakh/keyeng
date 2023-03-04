@@ -48,7 +48,7 @@ Z:
 		if runtime.GOOS == "darwin" {
 			go func(word string) {
 				split := strings.Split(word, " - ")
-				if word[0] > 97 && word[0] < 123 {
+				if word[0] >= 97 && word[0] <= 122 {
 					cmd := exec.Command("say", split[0])
 					cmd.Run()
 				} else {
