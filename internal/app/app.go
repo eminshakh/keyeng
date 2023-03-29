@@ -4,9 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"os/exec"
-	"runtime"
-	"strings"
 	"time"
 
 	"github.com/eminshakh/keyeng/internal/terminal"
@@ -41,22 +38,14 @@ func keygen(words []string) error {
 	if err != nil {
 		return err
 	}
+	sayCh := make(chan string)
+	defer close(sayCh)
+	go Say(sayCh)
 	now := time.Now()
 	var char rune
 Z:
 	for _, s := range words {
-		if runtime.GOOS == "darwin" {
-			go func(word string) {
-				split := strings.Split(word, " - ")
-				if word[0] >= 97 && word[0] <= 122 {
-					cmd := exec.Command("say", split[0])
-					cmd.Run()
-				} else {
-					cmd := exec.Command("say", split[1])
-					cmd.Run()
-				}
-			}(s)
-		}
+		sayCh <- s
 		terminal.Clear()
 		fmt.Printf(terminal.MoveCursor(terminal.HiYellowString(s), 1, 1))
 		line := []rune(s)
